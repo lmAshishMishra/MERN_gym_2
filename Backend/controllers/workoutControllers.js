@@ -52,6 +52,7 @@ exports.deleteWorkout=async(req,res)=>{
     }
     const workout =await Workout.findOneAndDelete({_id:id})
     if(!workout){return res.status(400).json({error:"No such Workout to delete"})}
+  
 }
 
 

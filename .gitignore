@@ -1,0 +1,15 @@
+# Ignore node_modules in any folder
+node_modules/
+**/node_modules/
+
+# Ignore environment variables
+.env
+Backend/.env
+frontend/.env
+
+# Ignore build folders
+frontend/build/
+
+# Ignore system files
+.DS_Store
+Thumbs.db
