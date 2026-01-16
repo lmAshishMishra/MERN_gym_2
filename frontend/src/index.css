@@ -68,7 +68,7 @@ header a{
   cursor: pointer;
   background-color: #f1f1f1;
   padding: 8px;
-  border-radius: 50%;
+  border-radius: 10%;
   color: #333;
 }
 label,input{
@@ -101,11 +101,17 @@ div.error{
  margin: 20px,0;
 
 }
-.deletebutton{
+  .workout-details .deletebutton{
+  display: inline-block;
     background-color: var(--primary);
   border: 0;
   color: #fff;
   padding: 15px;
   cursor: pointer;
  
+}
+input.error{
+  border: 1px solid var(--error);
+  /* color: var(--primary); */
+  /* background-color: var(--error); */
 }

@@ -8,7 +8,7 @@ const [title,setTitle] =useState('');
 const [load,setLoad] =useState('');
 const [reps,setReps] =useState('');
 const[error,setError] =useState(null);
-
+const[emptyFeilds,setEmptyFeilds] =useState([]);
 
 const handleSubmit = async (e) => {
     e.preventDefault();
@@ -29,13 +29,16 @@ const handleSubmit = async (e) => {
 
         if (!response.ok) {
             setError(json.error || 'Something went wrong on the server');
+            setEmptyFeilds(json.emptyFeilds)
         } else {
             setError(null);
             setTitle('');
             setLoad('');
             setReps('');
-            dispatch({type:'CREATE_WORKOUT',payload:json})
+            setEmptyFeilds([]);
             console.log('New Workout Added:', json);
+            dispatch({type:'CREATE_WORKOUT',payload:json})
+         
         }
     } catch (err) {
         setError('Could not connect to the server.');
@@ -46,13 +49,16 @@ const handleSubmit = async (e) => {
 <h3>Add a new workout</h3>
 
 <label>Excersize Title</label>
-<input type='text'value={title} onChange={(e)=>setTitle(e.target.value)}/> 
+<input type='text'value={title} onChange={(e)=>setTitle(e.target.value)} 
+className={emptyFeilds.includes('title')? 'error':''}/> 
 
 <label>Load (in Kg'):</label>
-<input type='number'value={load} onChange={(e)=>setLoad(e.target.value)}/> 
+<input type='number'value={load} onChange={(e)=>setLoad(e.target.value)}
+className={emptyFeilds.includes('load')? 'error':''}/> 
 
 <label>Reps:</label>
-<input type='number'value={reps} onChange={(e)=>setReps(e.target.value)}/> 
+<input type='number'value={reps} onChange={(e)=>setReps(e.target.value)} 
+ className={emptyFeilds.includes('reps')? 'error':''}/> 
  
 <button>Add Workout</button>
 {error && <div className='error'>{error}</div>}
