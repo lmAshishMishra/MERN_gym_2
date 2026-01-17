@@ -1,8 +1,11 @@
 const express=require('express');
-const router =express.Router();
+
 const Workout=require('../models/workoutModels')
 
 const {createWorkout,getWorkouts,getWorkout, deleteWorkout, updateWorkout} = require('../controllers/workoutControllers');
+const requireAuth = require('../middlewares/requireAuth');
+const router =express.Router();
+ router.use(requireAuth);
 /**
  
 * Routes: /api/workouts
